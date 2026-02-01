@@ -158,7 +158,7 @@
 		<type name="utf8" c:type="const gchar*"/>
 	</constant>
 	<function name="services_application_set_badge" c:identifier="granite_services_application_set_badge" glib:finish-func="services_application_set_badge_finish">
-		<source-position filename="../lib/Services/Application.vala" line="100" column="9"/>
+		<source-position filename="../lib/Services/Application.vala" line="99" column="9"/>
 		<return-value transfer-ownership="none">
 			<type name="none" c:type="void"/>
 		</return-value>
@@ -175,7 +175,7 @@
 		</parameters>
 	</function>
 	<function name="services_application_set_badge_finish" c:identifier="granite_services_application_set_badge_finish" throws="1">
-		<source-position filename="../lib/Services/Application.vala" line="100" column="9"/>
+		<source-position filename="../lib/Services/Application.vala" line="99" column="9"/>
 		<return-value transfer-ownership="full">
 			<type name="gboolean" c:type="gboolean"/>
 		</return-value>
@@ -186,7 +186,7 @@
 		</parameters>
 	</function>
 	<function name="services_application_set_badge_visible" c:identifier="granite_services_application_set_badge_visible" glib:finish-func="services_application_set_badge_visible_finish">
-		<source-position filename="../lib/Services/Application.vala" line="109" column="9"/>
+		<source-position filename="../lib/Services/Application.vala" line="108" column="9"/>
 		<return-value transfer-ownership="none">
 			<type name="none" c:type="void"/>
 		</return-value>
@@ -203,7 +203,7 @@
 		</parameters>
 	</function>
 	<function name="services_application_set_badge_visible_finish" c:identifier="granite_services_application_set_badge_visible_finish" throws="1">
-		<source-position filename="../lib/Services/Application.vala" line="109" column="9"/>
+		<source-position filename="../lib/Services/Application.vala" line="108" column="9"/>
 		<return-value transfer-ownership="full">
 			<type name="gboolean" c:type="gboolean"/>
 		</return-value>
@@ -214,7 +214,7 @@
 		</parameters>
 	</function>
 	<function name="services_application_set_progress" c:identifier="granite_services_application_set_progress" glib:finish-func="services_application_set_progress_finish">
-		<source-position filename="../lib/Services/Application.vala" line="120" column="9"/>
+		<source-position filename="../lib/Services/Application.vala" line="119" column="9"/>
 		<return-value transfer-ownership="none">
 			<type name="none" c:type="void"/>
 		</return-value>
@@ -231,7 +231,7 @@
 		</parameters>
 	</function>
 	<function name="services_application_set_progress_finish" c:identifier="granite_services_application_set_progress_finish" throws="1">
-		<source-position filename="../lib/Services/Application.vala" line="120" column="9"/>
+		<source-position filename="../lib/Services/Application.vala" line="119" column="9"/>
 		<return-value transfer-ownership="full">
 			<type name="gboolean" c:type="gboolean"/>
 		</return-value>
@@ -242,7 +242,7 @@
 		</parameters>
 	</function>
 	<function name="services_application_set_progress_visible" c:identifier="granite_services_application_set_progress_visible" glib:finish-func="services_application_set_progress_visible_finish">
-		<source-position filename="../lib/Services/Application.vala" line="129" column="9"/>
+		<source-position filename="../lib/Services/Application.vala" line="128" column="9"/>
 		<return-value transfer-ownership="none">
 			<type name="none" c:type="void"/>
 		</return-value>
@@ -259,7 +259,7 @@
 		</parameters>
 	</function>
 	<function name="services_application_set_progress_visible_finish" c:identifier="granite_services_application_set_progress_visible_finish" throws="1">
-		<source-position filename="../lib/Services/Application.vala" line="129" column="9"/>
+		<source-position filename="../lib/Services/Application.vala" line="128" column="9"/>
 		<return-value transfer-ownership="full">
 			<type name="gboolean" c:type="gboolean"/>
 		</return-value>
@@ -269,11 +269,11 @@
 			</parameter>
 		</parameters>
 	</function>
-	<enumeration name="GraniteServices.ContractorError" c:type="GraniteServicesContractorError" glib:type-name="GraniteServicesContractorError" glib:get-type="granite_services_contractor_error_get_type" glib:error-domain="granite-services-contractor-error-quark">
+	<enumeration name="ServicesContractorError" c:type="GraniteServicesContractorError" glib:type-name="GraniteServicesContractorError" glib:get-type="granite_services_contractor_error_get_type" glib:error-domain="granite-services-contractor-error-quark">
 		<source-position filename="../lib/Services/ContractorProxy.vala" line="51" column="5"/>
 		<member name="service_not_available" c:identifier="GRANITE_SERVICES_CONTRACTOR_ERROR_SERVICE_NOT_AVAILABLE" value="0"/>
 	</enumeration>
-	<class name="GraniteServices.ContractorProxy" c:type="GraniteServicesContractorProxy" c:symbol-prefix="contractor_proxy" glib:type-name="GraniteServicesContractorProxy" glib:get-type="granite_services_contractor_proxy_get_type" glib:type-struct="GraniteServices.ContractorProxyClass" parent="GObject.Object">
+	<class name="ServicesContractorProxy" c:type="GraniteServicesContractorProxy" c:symbol-prefix="contractor_proxy" glib:type-name="GraniteServicesContractorProxy" glib:get-type="granite_services_contractor_proxy_get_type" glib:type-struct="ServicesContractorProxyClass" parent="GObject.Object">
 		<source-position filename="../lib/Services/ContractorProxy.vala" line="85" column="5"/>
 		<field name="parent_instance" readable="0" private="1">
 			<type name="GObject.Object" c:type="GObject"/>
@@ -287,7 +287,7 @@
 		<function name="get_instance" c:identifier="granite_services_contractor_proxy_get_instance" throws="1">
 			<source-position filename="../lib/Services/ContractorProxy.vala" line="161" column="9"/>
 			<return-value transfer-ownership="full">
-				<type name="GraniteServices.ContractorProxy" c:type="GraniteServicesContractorProxy*"/>
+				<type name="ServicesContractorProxy" c:type="GraniteServicesContractorProxy*"/>
 			</return-value>
 		</function>
 		<function name="get_all_contracts" c:identifier="granite_services_contractor_proxy_get_all_contracts" throws="1">
@@ -351,17 +351,17 @@
 			</parameters>
 		</function>
 		<field name="priv" readable="0" private="1">
-			<type name="GraniteServices.ContractorProxyPrivate" c:type="GraniteServicesContractorProxyPrivate*"/>
+			<type name="ServicesContractorProxyPrivate" c:type="GraniteServicesContractorProxyPrivate*"/>
 		</field>
 	</class>
-	<record name="GraniteServices.ContractorProxyClass" c:type="GraniteServicesContractorProxyClass" glib:is-gtype-struct-for="GraniteServices.ContractorProxy">
+	<record name="ServicesContractorProxyClass" c:type="GraniteServicesContractorProxyClass" glib:is-gtype-struct-for="ServicesContractorProxy">
 		<source-position filename="../lib/Services/ContractorProxy.vala" line="85" column="5"/>
 		<field name="parent_class" readable="0" private="1">
 			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
 		</field>
 	</record>
-	<record name="GraniteServices.ContractorProxyPrivate" c:type="GraniteServicesContractorProxyPrivate" disguised="1"/>
-	<class name="GraniteServices.System" c:type="GraniteServicesSystem" c:symbol-prefix="system" glib:type-name="GraniteServicesSystem" glib:get-type="granite_services_system_get_type" glib:type-struct="GraniteServices.SystemClass" parent="GObject.Object">
+	<record name="ServicesContractorProxyPrivate" c:type="GraniteServicesContractorProxyPrivate" disguised="1"/>
+	<class name="ServicesSystem" c:type="GraniteServicesSystem" c:symbol-prefix="system" glib:type-name="GraniteServicesSystem" glib:get-type="granite_services_system_get_type" glib:type-struct="ServicesSystemClass" parent="GObject.Object">
 		<source-position filename="../lib/Services/System.vala" line="11" column="5"/>
 		<field name="parent_instance" readable="0" private="1">
 			<type name="GObject.Object" c:type="GObject"/>
@@ -375,21 +375,21 @@
 		<constructor name="new" c:identifier="granite_services_system_new">
 			<source-position filename="../lib/Services/System.vala" line="11" column="5"/>
 			<return-value transfer-ownership="full">
-				<type name="GraniteServices.System" c:type="GraniteServicesSystem*"/>
+				<type name="ServicesSystem" c:type="GraniteServicesSystem*"/>
 			</return-value>
 		</constructor>
 		<field name="priv" readable="0" private="1">
-			<type name="GraniteServices.SystemPrivate" c:type="GraniteServicesSystemPrivate*"/>
+			<type name="ServicesSystemPrivate" c:type="GraniteServicesSystemPrivate*"/>
 		</field>
 	</class>
-	<record name="GraniteServices.SystemClass" c:type="GraniteServicesSystemClass" glib:is-gtype-struct-for="GraniteServices.System">
+	<record name="ServicesSystemClass" c:type="GraniteServicesSystemClass" glib:is-gtype-struct-for="ServicesSystem">
 		<source-position filename="../lib/Services/System.vala" line="11" column="5"/>
 		<field name="parent_class" readable="0" private="1">
 			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
 		</field>
 	</record>
-	<record name="GraniteServices.SystemPrivate" c:type="GraniteServicesSystemPrivate" disguised="1"/>
-	<interface name="GraniteServices.Contract" c:type="GraniteServicesContract" c:symbol-prefix="contract" glib:type-name="GraniteServicesContract" glib:get-type="granite_services_contract_get_type" glib:type-struct="GraniteServices.ContractIface">
+	<record name="ServicesSystemPrivate" c:type="GraniteServicesSystemPrivate" disguised="1"/>
+	<interface name="ServicesContract" c:type="GraniteServicesContract" c:symbol-prefix="contract" glib:type-name="GraniteServicesContract" glib:get-type="granite_services_contract_get_type" glib:type-struct="ServicesContractIface">
 		<source-position filename="../lib/Services/ContractorProxy.vala" line="12" column="5"/>
 		<prerequisite name="GObject.Object"/>
 		<method name="get_display_name" c:identifier="granite_services_contract_get_display_name">
@@ -399,7 +399,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 			</parameters>
 		</method>
@@ -410,7 +410,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 			</parameters>
 		</virtual-method>
@@ -421,7 +421,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 			</parameters>
 		</method>
@@ -432,7 +432,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 			</parameters>
 		</virtual-method>
@@ -443,7 +443,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 			</parameters>
 		</method>
@@ -454,7 +454,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 			</parameters>
 		</virtual-method>
@@ -465,7 +465,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 				<parameter name="file" transfer-ownership="none">
 					<type name="Gio.File" c:type="GFile*"/>
@@ -479,7 +479,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 				<parameter name="file" transfer-ownership="none">
 					<type name="Gio.File" c:type="GFile*"/>
@@ -493,7 +493,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 				<parameter name="files" transfer-ownership="none">
 					<array length="1" c:type="GFile**">
@@ -512,7 +512,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+					<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 				</instance-parameter>
 				<parameter name="files" transfer-ownership="none">
 					<array length="1" c:type="GFile**">
@@ -525,7 +525,7 @@
 			</parameters>
 		</virtual-method>
 	</interface>
-	<record name="GraniteServices.ContractIface" c:type="GraniteServicesContractIface" glib:is-gtype-struct-for="GraniteServices.Contract">
+	<record name="ServicesContractIface" c:type="GraniteServicesContractIface" glib:is-gtype-struct-for="ServicesContract">
 		<source-position filename="../lib/Services/ContractorProxy.vala" line="12" column="5"/>
 		<field name="parent_iface" readable="0" private="1">
 			<type name="GObject.TypeInterface" c:type="GTypeInterface"/>
@@ -539,7 +539,7 @@
 				</return-value>
 				<parameters>
 					<parameter name="self" transfer-ownership="none">
-						<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+						<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 					</parameter>
 				</parameters>
 			</callback>
@@ -553,7 +553,7 @@
 				</return-value>
 				<parameters>
 					<parameter name="self" transfer-ownership="none">
-						<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+						<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 					</parameter>
 				</parameters>
 			</callback>
@@ -567,7 +567,7 @@
 				</return-value>
 				<parameters>
 					<parameter name="self" transfer-ownership="none">
-						<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+						<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 					</parameter>
 				</parameters>
 			</callback>
@@ -581,7 +581,7 @@
 				</return-value>
 				<parameters>
 					<parameter name="self" transfer-ownership="none">
-						<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+						<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 					</parameter>
 					<parameter name="file" transfer-ownership="none">
 						<type name="Gio.File" c:type="GFile*"/>
@@ -598,7 +598,7 @@
 				</return-value>
 				<parameters>
 					<parameter name="self" transfer-ownership="none">
-						<type name="GraniteServices.Contract" c:type="GraniteServicesContract*"/>
+						<type name="ServicesContract" c:type="GraniteServicesContract*"/>
 					</parameter>
 					<parameter name="files" transfer-ownership="none">
 						<array length="2" c:type="GFile**">
@@ -612,7 +612,7 @@
 			</callback>
 		</field>
 	</record>
-	<interface name="GraniteServices.SettingsSerializable" c:type="GraniteServicesSettingsSerializable" c:symbol-prefix="settings_serializable" glib:type-name="GraniteServicesSettingsSerializable" glib:get-type="granite_services_settings_serializable_get_type" glib:type-struct="GraniteServices.SettingsSerializableIface">
+	<interface name="ServicesSettingsSerializable" c:type="GraniteServicesSettingsSerializable" c:symbol-prefix="settings_serializable" glib:type-name="GraniteServicesSettingsSerializable" glib:get-type="granite_services_settings_serializable_get_type" glib:type-struct="ServicesSettingsSerializableIface">
 		<source-position filename="../lib/Services/Settings.vala" line="14" column="5"/>
 		<prerequisite name="GObject.Object"/>
 		<method name="settings_serialize" c:identifier="granite_services_settings_serializable_settings_serialize">
@@ -622,7 +622,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.SettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
+					<type name="ServicesSettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
 				</instance-parameter>
 			</parameters>
 		</method>
@@ -633,7 +633,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.SettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
+					<type name="ServicesSettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
 				</instance-parameter>
 			</parameters>
 		</virtual-method>
@@ -644,7 +644,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.SettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
+					<type name="ServicesSettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
 				</instance-parameter>
 				<parameter name="s" transfer-ownership="none">
 					<type name="utf8" c:type="const gchar*"/>
@@ -658,7 +658,7 @@
 			</return-value>
 			<parameters>
 				<instance-parameter name="self" transfer-ownership="none">
-					<type name="GraniteServices.SettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
+					<type name="ServicesSettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
 				</instance-parameter>
 				<parameter name="s" transfer-ownership="none">
 					<type name="utf8" c:type="const gchar*"/>
@@ -666,7 +666,7 @@
 			</parameters>
 		</virtual-method>
 	</interface>
-	<record name="GraniteServices.SettingsSerializableIface" c:type="GraniteServicesSettingsSerializableIface" glib:is-gtype-struct-for="GraniteServices.SettingsSerializable">
+	<record name="ServicesSettingsSerializableIface" c:type="GraniteServicesSettingsSerializableIface" glib:is-gtype-struct-for="ServicesSettingsSerializable">
 		<source-position filename="../lib/Services/Settings.vala" line="14" column="5"/>
 		<field name="parent_iface" readable="0" private="1">
 			<type name="GObject.TypeInterface" c:type="GTypeInterface"/>
@@ -680,7 +680,7 @@
 				</return-value>
 				<parameters>
 					<parameter name="self" transfer-ownership="none">
-						<type name="GraniteServices.SettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
+						<type name="ServicesSettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
 					</parameter>
 				</parameters>
 			</callback>
@@ -694,7 +694,7 @@
 				</return-value>
 				<parameters>
 					<parameter name="self" transfer-ownership="none">
-						<type name="GraniteServices.SettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
+						<type name="ServicesSettingsSerializable" c:type="GraniteServicesSettingsSerializable*"/>
 					</parameter>
 					<parameter name="s" transfer-ownership="none">
 						<type name="utf8" c:type="const gchar*"/>
