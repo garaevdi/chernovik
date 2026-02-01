@@ -1,11 +1,26 @@
 using Gtk 4.0;
-using Adw 1;
+using Granite 7.0;
+using Gio 2.0;
 
 template $ChernApplicationWindow: Gtk.ApplicationWindow {
-  titlebar: Gtk.HeaderBar {};
+  height-request: 220;
+  width-request: 400;
 
-  child: Adw.StatusPage {
-    icon-name: "distributor-logo";
+  titlebar: Gtk.HeaderBar {
+    css-classes: [
+      "flat",
+    ];
+
+    title-widget: Gtk.Label {
+      label: _("");
+    };
+  };
+
+  child: Granite.Placeholder {
+    icon: Gio.ThemedIcon {
+      name: "distributor-logo";
+    };
+
     title: _("Hello from peel!");
     description: _("Granite + Peel = 🥰");
   };
