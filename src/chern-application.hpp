@@ -8,24 +8,22 @@
 #include <peel/Granite/Granite.h>
 #include <peel/class.h>
 
-using namespace peel;
-
 namespace Chern
 {
-class Application final : public Gtk::Application
+class Application final : public peel::Gtk::Application
 {
-  PEEL_SIMPLE_CLASS (Application, Gtk::Application);
-  friend class Gio::Application;
+  PEEL_SIMPLE_CLASS (Application, peel::Gtk::Application);
+  friend class peel::Gio::Application;
 
   inline void
   vfunc_activate ();
 
 public:
-  static RefPtr<Application>
+  static peel::RefPtr<Application>
   create ()
   {
     return Object::create<Application> (prop_application_id (), APP_ID,
-      prop_flags (), Gio::Application::Flags::DEFAULT_FLAGS);
+      prop_flags (), peel::Gio::Application::Flags::DEFAULT_FLAGS);
   }
 };
 } // namespace Chern

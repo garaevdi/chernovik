@@ -1,0 +1,11 @@
+using Gtk 4.0;
+using Granite 7.0;
+using GtkSource 5;
+
+template $ChernEditor: Granite.Bin {
+  child: Gtk.ScrolledWindow {
+    child: GtkSource.View view {
+      buffer: GtkSource.Buffer buffer {};
+    };
+  };
+}

@@ -2,5 +2,6 @@
 <gresources>
   <gresource prefix="@APP_PATH@">
     <file preprocess="xml-stripblanks">ui/chern-application-window.ui</file>
+    <file preprocess="xml-stripblanks">ui/chern-editor.ui</file>
   </gresource>
 </gresources>

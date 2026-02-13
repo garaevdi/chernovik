@@ -8,6 +8,7 @@ deps = [
   dependency('gtk4'),
   dependency('libadwaita-1'),
   dependency('granite-7'),
+  dependency('gtksourceview-5')
 ]
 
 peel_gen = find_program('peel-gen')
@@ -21,6 +22,7 @@ peel_h = custom_target(
     '--out-dir', '@OUTDIR@',
     'Adw', '1',
     'Granite', '7.0',
+    'GtkSource', '5'
   ],
   output: 'peel',
 )
@@ -31,13 +33,14 @@ sources = [
   peel_h,
   'chern-application.hpp',
   'chern-application.cpp',
-
-  'dialogs/chern-application-window.hpp',
-  'dialogs/chern-application-window.cpp'
+  'chern-application-window.hpp',
+  'chern-application-window.cpp',
+  'chern-editor.hpp',
+  'chern-editor.cpp',
 ]
 
 executable(
-  meson.project_name(),
+  app_id,
   sources,
   dependencies: deps,
   install: true

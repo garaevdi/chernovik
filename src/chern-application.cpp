@@ -1,6 +1,8 @@
 #include "chern-application.hpp"
 
-#include "dialogs/chern-application-window.hpp"
+#include "chern-application-window.hpp"
+
+using namespace peel;
 
 namespace Chern
 {

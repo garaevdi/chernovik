@@ -6,7 +6,7 @@ project(
   meson_version: '>=0.59'
 )
 
-app_id = 'com.github.garaevdi.chernovik'
+app_id = 'io.github.garaevdi.' + meson.project_name()
 app_path = '/' + app_id.replace('.', '/')
 
 gnome = import('gnome')

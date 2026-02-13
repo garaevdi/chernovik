@@ -1,27 +1,48 @@
 using Gtk 4.0;
+using Adw 1;
 using Granite 7.0;
-using Gio 2.0;
 
-template $ChernApplicationWindow: Gtk.ApplicationWindow {
-  height-request: 220;
+template $ChernApplicationWindow: Adw.ApplicationWindow {
+  height-request: 500;
   width-request: 400;
 
-  titlebar: Gtk.HeaderBar {
-    css-classes: [
-      "flat",
-    ];
+  content: Gtk.Overlay {
+    child: Adw.ToolbarView {
+      [top]
+      Adw.HeaderBar {}
 
-    title-widget: Gtk.Label {
-      label: _("");
+      content: Gtk.Stack stack {
+        transition-type: crossfade;
+
+        Gtk.StackPage {
+          name: "placeholder";
+
+          child: Granite.Placeholder placeholder {
+            title: _("No files open");
+            description: _("Either open a file or create a new empty file");
+          };
+        }
+
+        Gtk.StackPage {
+          name: "content";
+
+          child: Adw.ToolbarView {
+            [top]
+            Adw.TabBar {
+              autohide: false;
+              expand-tabs: false;
+              view: tabview;
+
+              start-action-widget: Gtk.Button {
+                icon-name: "document-new-symbolic";
+                action-name: "win.new-tab";
+              };
+            }
+
+            content: Adw.TabView tabview {};
+          };
+        }
+      };
     };
-  };
-
-  child: Granite.Placeholder {
-    icon: Gio.ThemedIcon {
-      name: "distributor-logo";
-    };
-
-    title: _("Hello from peel!");
-    description: _("Granite + Peel = 🥰");
   };
 }
