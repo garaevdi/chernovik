@@ -7,7 +7,9 @@ AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: None
 AlignAfterOpenBracket: false
 BreakAfterReturnType: All
+BreakBeforeBraces: Allman
 BreakFunctionDefinitionParameters: false
+ColumnLimit: 120
 ContinuationIndentWidth: 2
 FixNamespaceComments: true
 IncludeBlocks: Regroup

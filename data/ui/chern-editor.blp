@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Gio 2.0;
 using Granite 7.0;
 using GtkSource 5;
 
@@ -7,5 +8,25 @@ template $ChernEditor: Granite.Bin {
     child: GtkSource.View view {
       buffer: GtkSource.Buffer buffer {};
     };
+  };
+}
+
+Gtk.FileDialog save_dialog {
+  title: _("Save file as");
+
+  filters: Gio.ListStore {
+    item-type: typeof<Gtk.FileFilter>;
+
+    Gtk.FileFilter {
+      mime-types: [
+        "text/*",
+      ];
+    }
+
+    Gtk.FileFilter {
+      patterns: [
+        "*",
+      ];
+    }
   };
 }

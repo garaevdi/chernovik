@@ -19,12 +19,24 @@ class ApplicationWindow final : public peel::Adw::ApplicationWindow
   peel::Adw::TabView *tabview;
   peel::Gtk::Stack *stack;
   peel::Granite::Placeholder *placeholder;
+  peel::Gtk::FileDialog *open_dialog;
+
+  peel::RefPtr<peel::Gio::Cancellable> cancellable;
 
   inline void
   init (Class *);
 
   void
-  create_new_buffer ();
+  create_new_tab ();
+
+  void
+  close_active_tab ();
+
+  void
+  open_file ();
+
+  void
+  save_file (bool save_as);
 
   inline void
   vfunc_dispose ();

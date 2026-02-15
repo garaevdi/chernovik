@@ -1,9 +1,10 @@
 using Gtk 4.0;
 using Adw 1;
 using Granite 7.0;
+using Gio 2.0;
 
 template $ChernApplicationWindow: Adw.ApplicationWindow {
-  height-request: 500;
+  height-request: 562;
   width-request: 400;
 
   content: Gtk.Overlay {
@@ -44,5 +45,25 @@ template $ChernApplicationWindow: Adw.ApplicationWindow {
         }
       };
     };
+  };
+}
+
+Gtk.FileDialog open_dialog {
+  title: _("Open file");
+
+  filters: Gio.ListStore {
+    item-type: typeof<Gtk.FileFilter>;
+
+    Gtk.FileFilter {
+      mime-types: [
+        "text/*",
+      ];
+    }
+
+    Gtk.FileFilter {
+      patterns: [
+        "*",
+      ];
+    }
   };
 }
