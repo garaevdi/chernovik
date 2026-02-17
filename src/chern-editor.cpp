@@ -11,7 +11,6 @@ PEEL_CLASS_IMPL (Editor, "ChernEditor", Granite::Bin)
 inline void
 Editor::Class::init ()
 {
-  // override_vfunc_constructed<Editor> ();
   override_vfunc_dispose<Editor> ();
   set_template_from_resource (APP_PATH "/ui/chern-editor.ui");
   PEEL_WIDGET_TEMPLATE_BIND_CHILD (Editor, buffer);
@@ -25,14 +24,15 @@ Editor::init (Class *)
   init_template ();
   source_file = GtkSource::File::create ();
   Object::bind_property (
-    this, prop_file (), source_file, GtkSource::File::prop_location (), peel::GObject::BindingFlags::SYNC_CREATE);
-  connect_notify(
+    this, prop_file (), source_file, source_file->prop_location (), peel::GObject::BindingFlags::BIDIRECTIONAL);
+  connect_notify (
     [this] (peel::GObject::Object *obj, peel::GObject::ParamSpec *pspec)
     {
-      if (GLib::str_equal(pspec->get_name(), file))
+      if (strcmp (pspec->get_name (), prop_file ().get_name ()) == 0)
       {
-        if (file) {
-          set_title(file->get_basename());
+        if (file)
+        {
+          set_title (file->get_basename ());
         }
       }
     });
@@ -47,35 +47,9 @@ Editor::vfunc_dispose ()
 }
 
 void
-Editor::save_file (bool save_as)
+Editor::write_file (Gio::Cancellable *cancellable)
 {
-  bool cancel = false;
-  if (!file || save_as)
-  {
-    // TODO: fix saveing as another file
-    // RefPtr<Gio::Cancellable> cancellable = Gio::Cancellable::create ();
-    // save_dialog->save (this->get_root ()->cast<Gtk::Window> (), cancellable,
-    //   [this, cancel] (Object *source, Gio::AsyncResult *res) mutable
-    //   {
-    //     UniquePtr<GLib::Error> err;
-    //     file = source->cast<Gtk::FileDialog> ()->save_finish (res, &err);
-    //     if (err)
-    //     {
-    //       GLib::log (APP_ID, GLib::LogLevelFlags::LEVEL_WARNING, "Couldn't save file: %s", err->message);
-    //       cancel = true;
-    //       return;
-    //     }
-    //   });
-  }
-
-  if (cancel)
-  {
-    return;
-  }
-
   RefPtr<GtkSource::FileSaver> saver = GtkSource::FileSaver::create (buffer, source_file);
-  RefPtr<Gio::Cancellable> cancellable = Gio::Cancellable::create ();
-  GLib::log (APP_ID, GLib::LogLevelFlags::LEVEL_DEBUG, "Trying to save file %s", file->get_path ().c_str ());
   saver->save_async (G_PRIORITY_DEFAULT, cancellable, nullptr,
     [] (Object *source, Gio::AsyncResult *res)
     {
@@ -86,6 +60,37 @@ Editor::save_file (bool save_as)
         GLib::log (APP_ID, GLib::LogLevelFlags::LEVEL_WARNING, "Couldn't save file: %s", err->message);
       }
     });
+}
+
+void
+Editor::save_file (bool save_as, Gio::Cancellable *cancellable)
+{
+  // FIXME figure out why it's impossible to change Gio::File
+  // i.e. whenever user tries to change save location, it's still saves to the old file
+  if (!file || save_as)
+  {
+    if (file)
+    {
+      save_dialog->set_initial_file (file);
+    }
+    save_dialog->save (this->get_root ()->cast<Gtk::Window> (), cancellable,
+      [this, cancellable] (Object *source, Gio::AsyncResult *res)
+      {
+        UniquePtr<GLib::Error> err;
+        set_file (source->cast<Gtk::FileDialog> ()->save_finish (res, &err));
+        if (err)
+        {
+          GLib::log (
+            APP_ID, GLib::LogLevelFlags::LEVEL_WARNING, "Couldn't select file's save location: %s", err->message);
+          return;
+        }
+        write_file (cancellable);
+      });
+  }
+  else
+  {
+    write_file (cancellable);
+  }
 }
 
 void
@@ -102,6 +107,5 @@ Editor::load_file (Gio::Cancellable *cancellable)
         GLib::log (APP_ID, GLib::LogLevelFlags::LEVEL_WARNING, "Couldn't load file: %s", err->message);
       }
     });
-  set_title (file->get_basename ());
 }
 } // namespace Chern

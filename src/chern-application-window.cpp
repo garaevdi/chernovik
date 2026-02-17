@@ -74,7 +74,7 @@ ApplicationWindow::init (Class *)
   tabview->connect_notify (
     [this] (peel::GObject::Object *obj, peel::GObject::ParamSpec *pspec)
     {
-      if (GLib::str_equal (pspec->get_name (), "n-pages"))
+      if (strcmp (pspec->get_name (), tabview->prop_n_pages().get_name()) == 0)
       {
         if (this->tabview->get_n_pages () > 0)
         {
@@ -144,7 +144,7 @@ ApplicationWindow::save_file (bool save_as)
   }
   FloatPtr<Adw::TabPage> page = tabview->get_selected_page ();
   FloatPtr<Editor> editor = page->get_child ()->cast<Editor> ();
-  editor->save_file (save_as);
+  editor->save_file (save_as, cancellable);
 }
 
 inline void

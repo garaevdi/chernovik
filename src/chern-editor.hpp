@@ -59,6 +59,9 @@ class Editor final : public peel::Granite::Bin
     notify (prop_file ());
   }
 
+  void
+  write_file (peel::Gio::Cancellable *cancellable);
+
 public:
   const char *
   get_title ()
@@ -76,7 +79,7 @@ public:
   PEEL_PROPERTY (peel::Gio::File, file, "file");
 
   void
-  save_file (bool save_as);
+  save_file (bool save_as, peel::Gio::Cancellable *cancellable);
 
   void
   load_file (peel::Gio::Cancellable *cancellable);
