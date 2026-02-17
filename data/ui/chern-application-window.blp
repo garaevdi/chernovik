@@ -4,13 +4,28 @@ using Granite 7.0;
 using Gio 2.0;
 
 template $ChernApplicationWindow: Adw.ApplicationWindow {
-  height-request: 562;
+  height-request: 600;
   width-request: 400;
+  title: "";
 
   content: Gtk.Overlay {
     child: Adw.ToolbarView {
       [top]
-      Adw.HeaderBar {}
+      Adw.HeaderBar {
+        [start]
+        Gtk.Revealer start_revealer {
+          reveal-child: false;
+          transition-type: slide_right;
+          child: Gtk.Box {
+            Gtk.Button {
+              icon-name: "document-open-symbolic";
+              action-name: "win.open-file";
+              tooltip-text: _("Open file\nCtrl+O");
+              tooltip-markup: _("Open file\n<span weight=\"600\" size=\"smaller\" alpha=\"75%\">Ctrl+O</span>");
+            }
+          };
+        }
+      }
 
       content: Gtk.Stack stack {
         transition-type: crossfade;

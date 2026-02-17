@@ -14,6 +14,7 @@ ApplicationWindow::Class::init ()
 {
   override_vfunc_dispose<ApplicationWindow> ();
   set_template_from_resource (APP_PATH "/ui/chern-application-window.ui");
+  PEEL_WIDGET_TEMPLATE_BIND_CHILD (ApplicationWindow, start_revealer);
   PEEL_WIDGET_TEMPLATE_BIND_CHILD (ApplicationWindow, tabview);
   PEEL_WIDGET_TEMPLATE_BIND_CHILD (ApplicationWindow, stack);
   PEEL_WIDGET_TEMPLATE_BIND_CHILD (ApplicationWindow, placeholder);
@@ -74,17 +75,19 @@ ApplicationWindow::init (Class *)
   tabview->connect_notify (
     [this] (peel::GObject::Object *obj, peel::GObject::ParamSpec *pspec)
     {
-      if (strcmp (pspec->get_name (), tabview->prop_n_pages().get_name()) == 0)
+      if (strcmp (pspec->get_name (), tabview->prop_n_pages ().get_name ()) == 0)
       {
         if (this->tabview->get_n_pages () > 0)
         {
           this->stack->set_visible_child_name ("content");
           action_set_enabled ("win.save-file", true);
+          this->start_revealer->set_reveal_child(true);
         }
         else
         {
           this->stack->set_visible_child_name ("placeholder");
           action_set_enabled ("win.save-file", false);
+          this->start_revealer->set_reveal_child(false);
         }
       }
     });

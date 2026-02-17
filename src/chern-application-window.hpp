@@ -16,6 +16,7 @@ class ApplicationWindow final : public peel::Adw::ApplicationWindow
 {
   PEEL_SIMPLE_CLASS (ApplicationWindow, peel::Adw::ApplicationWindow);
 
+  peel::Gtk::Revealer *start_revealer;
   peel::Adw::TabView *tabview;
   peel::Gtk::Stack *stack;
   peel::Granite::Placeholder *placeholder;
