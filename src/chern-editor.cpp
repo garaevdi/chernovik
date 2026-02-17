@@ -25,6 +25,7 @@ Editor::init (Class *)
   source_file = GtkSource::File::create ();
   Object::bind_property (
     this, prop_file (), source_file, source_file->prop_location (), peel::GObject::BindingFlags::BIDIRECTIONAL);
+  buffer->connect_changed ([this] (Gtk::TextBuffer *buffer) { this->set_dirty (true); });
   connect_notify (
     [this] (peel::GObject::Object *obj, peel::GObject::ParamSpec *pspec)
     {
@@ -51,14 +52,16 @@ Editor::write_file (Gio::Cancellable *cancellable)
 {
   RefPtr<GtkSource::FileSaver> saver = GtkSource::FileSaver::create (buffer, source_file);
   saver->save_async (G_PRIORITY_DEFAULT, cancellable, nullptr,
-    [] (Object *source, Gio::AsyncResult *res)
+    [this] (Object *source, Gio::AsyncResult *res)
     {
       UniquePtr<GLib::Error> err;
       source->cast<GtkSource::FileSaver> ()->save_finish (res, &err);
       if (err)
       {
         GLib::log (APP_ID, GLib::LogLevelFlags::LEVEL_WARNING, "Couldn't save file: %s", err->message);
+        return;
       }
+      this->set_dirty (false);
     });
 }
 
@@ -98,7 +101,7 @@ Editor::load_file (Gio::Cancellable *cancellable)
 {
   RefPtr<GtkSource::FileLoader> loader = GtkSource::FileLoader::create (buffer, source_file);
   loader->load_async (G_PRIORITY_DEFAULT, cancellable, nullptr,
-    [] (Object *source, Gio::AsyncResult *res)
+    [this] (Object *source, Gio::AsyncResult *res)
     {
       UniquePtr<GLib::Error> err;
       source->cast<GtkSource::FileLoader> ()->load_finish (res, &err);
@@ -106,6 +109,7 @@ Editor::load_file (Gio::Cancellable *cancellable)
       {
         GLib::log (APP_ID, GLib::LogLevelFlags::LEVEL_WARNING, "Couldn't load file: %s", err->message);
       }
+      this->set_dirty (false);
     });
 }
 } // namespace Chern

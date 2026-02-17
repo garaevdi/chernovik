@@ -109,10 +109,7 @@ void
 ApplicationWindow::create_new_tab ()
 {
   FloatPtr<Editor> editor = Editor::create ();
-  FloatPtr<Adw::TabPage> page = tabview->append (editor->cast<Gtk::Widget> ());
-  tabview->set_selected_page (page);
-  Object::bind_property (
-    editor, Editor::prop_title (), page, Adw::TabPage::prop_title (), peel::GObject::BindingFlags::SYNC_CREATE);
+  append_editor(editor);
 }
 
 void
@@ -143,10 +140,7 @@ ApplicationWindow::open_file ()
 
       FloatPtr<Editor> editor = Editor::create_with_file (std::move (file));
       editor->load_file (cancellable);
-      FloatPtr<Adw::TabPage> page = tabview->append (editor->cast<Gtk::Widget> ());
-      tabview->set_selected_page (page);
-      Object::bind_property (
-        editor, Editor::prop_title (), page, Adw::TabPage::prop_title (), peel::GObject::BindingFlags::SYNC_CREATE);
+      append_editor(editor);
     });
 }
 
@@ -160,6 +154,23 @@ ApplicationWindow::save_file (bool save_as)
   FloatPtr<Adw::TabPage> page = tabview->get_selected_page ();
   FloatPtr<Editor> editor = page->get_child ()->cast<Editor> ();
   editor->save_file (save_as, cancellable);
+}
+
+void
+ApplicationWindow::append_editor (Editor *editor)
+{
+  FloatPtr<Adw::TabPage> page = tabview->append (editor->cast<Gtk::Widget> ());
+  tabview->set_selected_page (page);
+  Object::bind_property (
+    editor, Editor::prop_title (), page, Adw::TabPage::prop_title (), peel::GObject::BindingFlags::SYNC_CREATE);
+  Object::bind_property(editor, Editor::prop_dirty(), page, Adw::TabPage::prop_indicator_icon(), peel::GObject::BindingFlags::DEFAULT, [] (bool dirty) -> RefPtr<Gio::Icon> {
+    if (dirty) {
+      RefPtr<Gio::Icon> icon = Gio::ThemedIcon::create("panel-modified-symbolic");
+      return icon;
+    } else {
+      return nullptr;
+    }
+  });
 }
 
 inline void

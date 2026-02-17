@@ -10,6 +10,8 @@
 #include <peel/class.h>
 #include <peel/widget-template.h>
 
+#include "chern-editor.hpp"
+
 namespace Chern
 {
 class ApplicationWindow final : public peel::Adw::ApplicationWindow
@@ -38,6 +40,9 @@ class ApplicationWindow final : public peel::Adw::ApplicationWindow
 
   void
   save_file (bool save_as);
+
+  void
+  append_editor (Editor *editor);
 
   inline void
   vfunc_dispose ();

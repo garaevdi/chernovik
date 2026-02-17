@@ -22,8 +22,9 @@ class Editor final : public peel::Granite::Bin
 
   peel::RefPtr<peel::GtkSource::File> source_file;
 
-  peel::RefPtr<peel::Gio::File> file;
   peel::String title;
+  peel::RefPtr<peel::Gio::File> file;
+  bool dirty;
 
   template <typename F>
   static void
@@ -35,6 +36,9 @@ class Editor final : public peel::Granite::Bin
     f.prop (prop_file ())
       .get (&Editor::get_file)
       .set (&Editor::set_file);
+    f.prop (prop_dirty(), false)
+      .get (&Editor::get_dirty)
+      .set (&Editor::set_dirty);
   }
 
   inline void
@@ -60,6 +64,17 @@ class Editor final : public peel::Granite::Bin
   }
 
   void
+  set_dirty (bool new_dirt)
+  {
+    if (dirty == new_dirt)
+    {
+      return;
+    }
+    dirty = new_dirt;
+    notify (prop_dirty ());
+  }
+
+  void
   write_file (peel::Gio::Cancellable *cancellable);
 
 public:
@@ -75,8 +90,15 @@ public:
     return file;
   }
 
+  bool
+  get_dirty ()
+  {
+    return dirty;
+  }
+
   PEEL_PROPERTY (const char *, title, "title");
   PEEL_PROPERTY (peel::Gio::File, file, "file");
+  PEEL_PROPERTY (bool, dirty, "dirty");
 
   void
   save_file (bool save_as, peel::Gio::Cancellable *cancellable);
