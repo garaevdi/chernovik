@@ -90,6 +90,18 @@ ApplicationWindow::init (Class *)
           this->start_revealer->set_reveal_child(false);
         }
       }
+      else if (strcmp (pspec->get_name (), tabview->prop_selected_page ().get_name ()) == 0)
+      {
+        RefPtr<Adw::TabPage> page = tabview->get_selected_page ();
+        if (page)
+        {
+          this->set_title (page->get_child()->cast<Editor>()->get_title());
+        }
+        else
+        {
+          this->set_title ("");
+        }
+      }
     });
 }
 
