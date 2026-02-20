@@ -1,0 +1,144 @@
+{
+  "app-id": "io.github.garaevdi.chernovik",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "49",
+  "sdk": "org.gnome.Sdk",
+  "command": "io.github.garaevdi.chernovik",
+  "finish-args": [
+    "--share=ipc",
+    "--socket=fallback-x11",
+    "--socket=wayland",
+    "--device=dri",
+    "--filesystem=home"
+  ],
+  "modules": [
+    {
+      "name": "sassc",
+      "buildsystem": "autotools",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/sass/sassc/archive/3.6.2.tar.gz",
+          "sha256": "608dc9002b45a91d11ed59e352469ecc05e4f58fc1259fc9a9f5b8f0f8348a03"
+        },
+        {
+          "type": "script",
+          "dest-filename": "autogen.sh",
+          "commands": [
+            "autoreconf -si"
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "name": "libsass",
+          "buildsystem": "autotools",
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://github.com/sass/libsass/archive/3.6.5.tar.gz",
+              "sha256": "89d8f2c46ae2b1b826b58ce7dde966a176bac41975b82e84ad46b01a55080582"
+            },
+            {
+              "type": "script",
+              "dest-filename": "autogen.sh",
+              "commands": [
+                "autoreconf -si"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "granite-7",
+      "buildsystem": "meson",
+      "config-opts": [
+        "-Ddocumentation=false",
+        "-Ddemo=false",
+        "--libdir=lib"
+      ],
+      "cleanup": [
+        "/share/icons",
+        "/share/metainfo"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/elementary/granite/archive/refs/tags/7.8.0.tar.gz",
+          "sha256": "df3c3a034ebf5d00d702e418e38c4c68f231930449f6ea2ea7e564364d149b1a"
+        }
+      ]
+    },
+    {
+      "name": "stylesheet",
+      "buildsystem": "meson",
+      "cleanup": [
+        "/share/metainfo"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/elementary/stylesheet/archive/8.2.2.tar.gz",
+          "sha256": "b5f016c9e7c528d18bb1fa7a405bc294af336a9d967574a66eb22e5fffb89aa9"
+        }
+      ]
+    },
+    {
+      "name": "icons",
+      "buildsystem": "meson",
+      "cleanup": [
+        "/share/metainfo"
+      ],
+      "config-opts": [
+        "-Dpalettes=false"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/elementary/icons/archive/8.2.0.tar.gz",
+          "sha256": "22b235d796d374b22cade7183f9acb8584a551fecd865927a9f0e6562ed67392"
+        }
+      ],
+      "modules": [
+        {
+          "name": "xcursorgen",
+          "cleanup": [
+            "*"
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://xorg.freedesktop.org/archive/individual/app/xcursorgen-1.0.9.tar.xz",
+              "sha256": "0cc9e156ac84ca16ea902710af35e0faffa51d13797071e3b4b6cc7cbd493bbc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "peel",
+      "buildsystem": "meson",
+      "cleanup": [
+        "*"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.gnome.org/bugaevc/peel.git",
+          "branch": "main"
+        }
+      ]
+    },
+    {
+      "name": "chernovik",
+      "buildsystem": "meson",
+      "sources": [
+        {
+          "type": "dir",
+          "path": ".."
+        }
+      ]
+    }
+  ]
+}

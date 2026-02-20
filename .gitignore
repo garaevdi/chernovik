@@ -1,3 +1,6 @@
 _build
 peel
 .cache
+_flatpak
+.flatpak-builder
+repo

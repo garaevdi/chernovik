@@ -1,0 +1,39 @@
+app-id: io.github.garaevdi.chernovik
+runtime: io.elementary.Platform
+runtime-version: "daily"
+sdk: io.elementary.Sdk
+command: io.github.garaevdi.chernovik
+finish-args:
+  - "--share=ipc"
+  - "--socket=fallback-x11"
+  - "--socket=wayland"
+  - "--device=dri"
+  - "--filesystem=home"
+
+modules:
+  - name: peel
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/bugaevc/peel.git
+        branch: main
+    cleanup:
+      - "*"
+
+  - name: blueprint-compiler
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/blueprint-compiler.git
+        branch: "0.18.0"
+
+  - name: chernovik
+    buildsystem: meson
+    build-options:
+      env:
+        - GI_GIR_PATH: "./gir"
+      make-args:
+        - "--verbose"
+    sources:
+      - type: dir
+        path: ".."
