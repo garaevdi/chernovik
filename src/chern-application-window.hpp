@@ -25,6 +25,7 @@ class ApplicationWindow final : public peel::Adw::ApplicationWindow
   peel::Gtk::FileDialog *open_dialog;
 
   peel::RefPtr<peel::Gio::Cancellable> cancellable;
+  peel::RefPtr<peel::Gio::Settings> settings;
 
   inline void
   init (Class *);

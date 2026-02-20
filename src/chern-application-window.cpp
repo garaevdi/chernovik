@@ -65,6 +65,11 @@ ApplicationWindow::init (Class *)
   cancellable = Gio::Cancellable::create ();
 
   action_set_enabled ("win.save-file", false);
+
+  settings = Gio::Settings::create(APP_ID);
+  settings->bind("window-width", this, "default-width", Gio::Settings::BindFlags::DEFAULT);
+  settings->bind("window-height", this, "default-height", Gio::Settings::BindFlags::DEFAULT);
+
   auto new_icon = Gio::ThemedIcon::create ("document-new");
   auto new_btn = placeholder->append_button (new_icon, _ ("New empty file"), _ ("Create new tab with an empty buffer"));
   new_btn->set_action_name ("win.new-tab");
