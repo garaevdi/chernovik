@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the chernovik package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: chernovik\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-23 14:12+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/chern-application-window.blp:23
+msgid ""
+"Open file\n"
+"Ctrl+O"
+msgstr ""
+
+#: data/ui/chern-application-window.blp:24
+msgid ""
+"Open file\n"
+"<span weight=\"600\" size=\"smaller\" alpha=\"75%\">Ctrl+O</span>"
+msgstr ""
+
+#: data/ui/chern-application-window.blp:37
+msgid "No files open"
+msgstr ""
+
+#: data/ui/chern-application-window.blp:38
+msgid "Either open a file or create a new empty file"
+msgstr ""
+
+#: data/ui/chern-application-window.blp:67 src/chern-application-window.cpp:86
+msgid "Open file"
+msgstr ""
+
+#: src/chern-application-window.cpp:83
+msgid "New empty file"
+msgstr ""
+
+#: src/chern-application-window.cpp:83
+msgid "Create new tab with an empty buffer"
+msgstr ""
+
+#: src/chern-application-window.cpp:86
+msgid "Open new tab with an existing file"
+msgstr ""

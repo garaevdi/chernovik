@@ -1,6 +1,8 @@
 config_h_conf = configuration_data()
 config_h_conf.set_quoted('APP_ID', app_id)
 config_h_conf.set_quoted('APP_PATH', app_path)
+config_h_conf.set_quoted('GETTEXT_PACKAGE', gettext)
+config_h_conf.set_quoted('DATADIR', datadir)
 config_h = configure_file(configuration: config_h_conf, output: 'config.h')
 
 deps = [

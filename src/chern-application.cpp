@@ -2,6 +2,9 @@
 
 #include "chern-application-window.hpp"
 
+#include <clocale>
+#include <libintl.h>
+
 using namespace peel;
 
 namespace Chern
@@ -31,6 +34,10 @@ Application::vfunc_activate ()
 int
 main (int argc, char *argv[])
 {
+  setlocale(LC_ALL, "");
+  bindtextdomain(GETTEXT_PACKAGE, DATADIR "/locale");
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain(GETTEXT_PACKAGE);
   RefPtr<Chern::Application> app = Chern::Application::create ();
   return app->run (argc, argv);
 }

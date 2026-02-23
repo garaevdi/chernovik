@@ -2,7 +2,6 @@
 
 #include "chern-editor.hpp"
 
-#include <glib/gi18n.h>
 #include <peel/Adw/Adw.h>
 #include <peel/GLib/functions.h>
 #include <peel/Gio/Gio.h>
@@ -11,6 +10,9 @@
 #include <peel/GtkSource/GtkSource.h>
 #include <peel/class.h>
 #include <peel/widget-template.h>
+#include <libintl.h>
+
+#define _(String) gettext(String)
 
 namespace Chern
 {
