@@ -22,9 +22,12 @@ inline void
 Editor::init (Class *)
 {
   init_template ();
+
   source_file = GtkSource::File::create ();
+
   Object::bind_property (
-    this, prop_file (), source_file, source_file->prop_location (), peel::GObject::BindingFlags::BIDIRECTIONAL);
+    this, prop_file (), source_file, source_file->prop_location (), peel::GObject::BindingFlags::BIDIRECTIONAL
+  );
   buffer->connect_changed ([this] (Gtk::TextBuffer *buffer) { this->set_dirty (true); });
   connect_notify (
     [this] (peel::GObject::Object *obj, peel::GObject::ParamSpec *pspec)
@@ -36,7 +39,8 @@ Editor::init (Class *)
           set_title (file->get_basename ());
         }
       }
-    });
+    }
+  );
   set_title ("New file");
 }
 
@@ -51,7 +55,8 @@ void
 Editor::write_file (Gio::Cancellable *cancellable)
 {
   RefPtr<GtkSource::FileSaver> saver = GtkSource::FileSaver::create (buffer, source_file);
-  saver->save_async (G_PRIORITY_DEFAULT, cancellable, nullptr,
+  saver->save_async (
+    G_PRIORITY_DEFAULT, cancellable, nullptr,
     [this] (Object *source, Gio::AsyncResult *res)
     {
       UniquePtr<GLib::Error> err;
@@ -62,7 +67,8 @@ Editor::write_file (Gio::Cancellable *cancellable)
         return;
       }
       this->set_dirty (false);
-    });
+    }
+  );
 }
 
 void
@@ -76,7 +82,8 @@ Editor::save_file (bool save_as, Gio::Cancellable *cancellable)
     {
       save_dialog->set_initial_file (file);
     }
-    save_dialog->save (this->get_root ()->cast<Gtk::Window> (), cancellable,
+    save_dialog->save (
+      this->get_root ()->cast<Gtk::Window> (), cancellable,
       [this, cancellable] (Object *source, Gio::AsyncResult *res)
       {
         UniquePtr<GLib::Error> err;
@@ -84,11 +91,13 @@ Editor::save_file (bool save_as, Gio::Cancellable *cancellable)
         if (err)
         {
           GLib::log (
-            APP_ID, GLib::LogLevelFlags::LEVEL_WARNING, "Couldn't select file's save location: %s", err->message);
+            APP_ID, GLib::LogLevelFlags::LEVEL_WARNING, "Couldn't select file's save location: %s", err->message
+          );
           return;
         }
         write_file (cancellable);
-      });
+      }
+    );
   }
   else
   {
@@ -100,7 +109,8 @@ void
 Editor::load_file (Gio::Cancellable *cancellable)
 {
   RefPtr<GtkSource::FileLoader> loader = GtkSource::FileLoader::create (buffer, source_file);
-  loader->load_async (G_PRIORITY_DEFAULT, cancellable, nullptr,
+  loader->load_async (
+    G_PRIORITY_DEFAULT, cancellable, nullptr,
     [this] (Object *source, Gio::AsyncResult *res)
     {
       UniquePtr<GLib::Error> err;
@@ -110,6 +120,7 @@ Editor::load_file (Gio::Cancellable *cancellable)
         GLib::log (APP_ID, GLib::LogLevelFlags::LEVEL_WARNING, "Couldn't load file: %s", err->message);
       }
       this->set_dirty (false);
-    });
+    }
+  );
 }
 } // namespace Chern

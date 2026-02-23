@@ -1,11 +1,12 @@
 BasedOnStyle: GNU
+AlignAfterOpenBracket: BlockIndent
 AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseExpressionOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortCompoundRequirementOnASingleLine: false
 AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: None
-AlignAfterOpenBracket: false
+BinPackArguments: true
 BreakAfterReturnType: All
 BreakBeforeBraces: Allman
 BreakFunctionDefinitionParameters: false

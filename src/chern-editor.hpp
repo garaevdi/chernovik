@@ -2,9 +2,9 @@
 
 #include <peel/GLib/GLib.h>
 #include <peel/GObject/GObject.h>
+#include <peel/Gio/Gio.h>
 #include <peel/Granite/Granite.h>
 #include <peel/Gtk/Gtk.h>
-#include <peel/Gio/Gio.h>
 #include <peel/GtkSource/GtkSource.h>
 #include <peel/String.h>
 #include <peel/class.h>
@@ -26,6 +26,7 @@ class Editor final : public peel::Granite::Bin
   peel::RefPtr<peel::Gio::File> file;
   bool dirty;
 
+  // clang-format off
   template <typename F>
   static void
   define_properties (F &f)
@@ -36,10 +37,11 @@ class Editor final : public peel::Granite::Bin
     f.prop (prop_file ())
       .get (&Editor::get_file)
       .set (&Editor::set_file);
-    f.prop (prop_dirty(), false)
+    f.prop (prop_dirty (), false)
       .get (&Editor::get_dirty)
       .set (&Editor::set_dirty);
   }
+  // clang-format on
 
   inline void
   init (Class *);

@@ -21,9 +21,9 @@ Application::vfunc_activate ()
   parent_vfunc_activate<Application> ();
   auto window = get_active_window ();
   if (window == NULL)
-    {
-      window = ApplicationWindow::create (this);
-    }
+  {
+    window = ApplicationWindow::create (this);
+  }
   window->present ();
 }
 } // namespace Chern
